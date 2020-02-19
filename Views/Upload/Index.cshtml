@@ -1,0 +1,28 @@
+﻿@model CRF_Final_Project.Models.ImportFile
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+
+@using (Html.BeginForm("Index", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group">
+        @Html.TextBoxFor(m => m.File, new { type = "file" })
+        <button id="submitButton" type="submit" class="btn btn-primary">Submit</button>
+        @Html.ValidationMessageFor(model => model.File)
+    </div>
+   
+}
+
+@if (ViewBag.Result != null)
+{
+    <div class="alert alert-info">
+        @Html.Raw(ViewBag.Result);
+    </div>
+    
+    @Html.ActionLink("Show Table", "Show", "Operation", null, new { @class="btn btn-success"})
+    
+}
